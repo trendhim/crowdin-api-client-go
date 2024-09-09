@@ -836,7 +836,7 @@ func TestTasksService_GetSettingsTepmlate(t *testing.T) {
 			Languages: []model.TaskSettingsTemplateLanguage{
 				{
 					LanguageID: "uk",
-					UserIDs:    []int{1},
+					UserIDs:    []string{"1"},
 				},
 			},
 		},
@@ -920,7 +920,7 @@ func TestTasksService_ListSettingsTepmlates(t *testing.T) {
 						Languages: []model.TaskSettingsTemplateLanguage{
 							{
 								LanguageID: "uk",
-								UserIDs:    []int{1},
+								UserIDs:    []string{"1"},
 								TeamIDs:    []int{2},
 							},
 						},
@@ -985,7 +985,7 @@ func TestTasksService_AddSettingsTepmlates(t *testing.T) {
 			Languages: []model.TaskSettingsTemplateLanguage{
 				{
 					LanguageID: "uk",
-					UserIDs:    []int{1},
+					UserIDs:    []string{"1"},
 				},
 			},
 		},
@@ -1001,7 +1001,7 @@ func TestTasksService_AddSettingsTepmlates(t *testing.T) {
 			Languages: []model.TaskSettingsTemplateLanguage{
 				{
 					LanguageID: "uk",
-					UserIDs:    []int{1},
+					UserIDs:    []string{"1"},
 				},
 			},
 		},
@@ -1057,7 +1057,7 @@ func TestTasksService_EditSettingsTepmlates(t *testing.T) {
 			Languages: []model.TaskSettingsTemplateLanguage{
 				{
 					LanguageID: "uk",
-					UserIDs:    []int{1},
+					UserIDs:    []string{"1"},
 				},
 			},
 		},

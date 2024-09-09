@@ -111,7 +111,7 @@ func TestTaskSettingsTemplateAddRequestValidate(t *testing.T) {
 				Name: "Default template",
 				Config: TaskSettingsTemplateConfig{
 					Languages: []TaskSettingsTemplateLanguage{
-						{LanguageID: "uk", UserIDs: []int{1, 2}, TeamIDs: []int{3, 4}}}},
+						{LanguageID: "uk", UserIDs: []string{"1", "2"}, TeamIDs: []int{3, 4}}}},
 			},
 			valid: true,
 		},
