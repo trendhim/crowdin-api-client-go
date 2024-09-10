@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"io"
 	"mime"
 	"net/url"
 	"os"
@@ -40,6 +41,30 @@ func (s *StorageService) Add(ctx context.Context, file *os.File) (*model.Storage
 	resp, err := s.client.Upload(ctx, "/api/v2/storages", file, res,
 		Header("Content-Type", mime.TypeByExtension(filepath.Ext(file.Name()))),
 		Header("Crowdin-API-FileName", url.QueryEscape(filepath.Base(file.Name()))),
+	)
+
+	return res.Data, resp, err
+}
+
+func (s *StorageService) AddIO(ctx context.Context, reader io.Reader, filename string) (*model.Storage, *Response, error) {
+	if reader == nil {
+		return nil, nil, errors.New("reader is required")
+	}
+
+	if filename == "" {
+		return nil, nil, errors.New("filename is required")
+	}
+
+	ext := filepath.Ext(filename)
+	contentType := mime.TypeByExtension(ext)
+	if contentType == "" {
+		contentType = "application/octet-stream"
+	}
+
+	res := new(model.StorageGetResponse)
+	resp, err := s.client.Upload(ctx, "/api/v2/storages", reader, res,
+		Header("Content-Type", contentType),
+		Header("Crowdin-API-FileName", url.QueryEscape(filepath.Base(filename))),
 	)
 
 	return res.Data, resp, err
